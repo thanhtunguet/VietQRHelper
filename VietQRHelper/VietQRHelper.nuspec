@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <!-- <icon>icon.png</icon> -->
-    <projectUrl>https://github.com/nguyenthao1988/VietQRHelper</projectUrl>
+    <projectUrl>https://github.com/thanhtunguet/VietQRHelper</projectUrl>
     <icon>logo.png</icon>
     <description>$description$</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>

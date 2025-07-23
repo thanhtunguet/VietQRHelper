@@ -14,9 +14,9 @@ class Program
             purpose: "Test cross-platform console app"
         );
         var content = qrPay.Build();
-        var pngBytes = QRCodeHelper.TaoVietQRCodePng(content);
-        var outputPath = Path.Combine(Directory.GetCurrentDirectory(), "vietqr_test.png");
+        var pngBytes = QRCodeHelper.TaoVietQRCodePngWithLogo(content, "vietqr.png");
+        var outputPath = Path.Combine(Directory.GetCurrentDirectory(), "vietqr_with_logo.png");
         File.WriteAllBytes(outputPath, pngBytes);
-        Console.WriteLine($"QR code PNG saved to: {outputPath}");
+        Console.WriteLine($"QR code PNG with logo saved to: {outputPath}");
     }
 }
