@@ -20,8 +20,8 @@ jobs:
         with:
           dotnet-version: "6.0.x"
       - name: Restore dependencies
-        run: dotnet restore VietQRHelper.sln
+        run: dotnet restore VietQR.sln
       - name: Build
-        run: dotnet build VietQRHelper.sln --configuration Release --no-restore
+        run: dotnet build VietQR.sln --configuration Release --no-restore
       - name: Run Console Test
         run: dotnet run --project VietQRConsoleTest/VietQRConsoleTest.csproj
