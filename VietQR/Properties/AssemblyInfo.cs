@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// [assembly: AssemblyTitle("VietQRHelper")]
+// [assembly: AssemblyTitle("VietQR")]
 // [assembly: AssemblyDescription("")]
 // [assembly: AssemblyConfiguration("")]
 // [assembly: AssemblyCompany("")]
-// [assembly: AssemblyProduct("VietQRHelper")]
+// [assembly: AssemblyProduct("VietQR")]
 // [assembly: AssemblyCopyright("")]
 // [assembly: AssemblyTrademark("")]
 // [assembly: AssemblyCulture("")]

@@ -15,7 +15,7 @@ Xin gửi lời cảm ơn tới các tác giả.
 
 ## Giới thiệu
 
-**VietQRHelper** là thư viện C# hỗ trợ tạo và giải mã mã QR thanh toán theo chuẩn VietQR, VNPayQR, QR đa năng (MoMo, ZaloPay) cho các ứng dụng .NET hiện đại (>= .NET 6, cross-platform: Windows, Linux, macOS).
+**VietQR** là thư viện C# hỗ trợ tạo và giải mã mã QR thanh toán theo chuẩn VietQR, VNPayQR, QR đa năng (MoMo, ZaloPay) cho các ứng dụng .NET hiện đại (>= .NET 6, cross-platform: Windows, Linux, macOS).
 
 - Tạo mã QR chuyển khoản ngân hàng, QR động, QR đa năng ví điện tử.
 - Giải mã nội dung QR, trích xuất thông tin tài khoản, số tiền, nội dung chuyển khoản, merchant...
@@ -33,7 +33,7 @@ dotnet add package QRCoder --version 1.4.3
 
 Thêm tham chiếu project nếu dùng source:
 ```xml
-<ProjectReference Include="../VietQRHelper/VietQRHelper.csproj" />
+<ProjectReference Include="../VietQR/VietQR.csproj" />
 ```
 
 ---
@@ -43,14 +43,14 @@ Thêm tham chiếu project nếu dùng source:
 ### 1. Tạo mã QR VietQR (chuyển khoản ngân hàng)
 
 ```csharp
-using VietQRHelper;
+using VietQR;
 
 // Khởi tạo QR chuyển khoản Vietcombank
 var qrPay = QRPay.InitVietQR(
     bankBin: BankApp.BanksObject[BankKey.VIETCOMBANK].bin,
     bankNumber: "0491000147829",
     amount: "20000",
-    purpose: "Ủng hộ VietQRHelper"
+    purpose: "Ủng hộ VietQR"
 );
 var content = qrPay.Build(); // Chuỗi nội dung QR
 
@@ -111,7 +111,7 @@ var content = qrPay.Build();
 ## Giải mã (decode) mã QR
 
 ```csharp
-using VietQRHelper;
+using VietQR;
 
 var qrContent = "00020101021238530010A0000007270123000697041601092576788590208QRIBFTTA5303704540410005802VN62150811Chuyen tien6304BBB8";
 var qrPay = new QRPay(qrContent);

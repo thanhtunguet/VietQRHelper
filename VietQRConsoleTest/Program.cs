@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using VietQRHelper;
+using VietQR;
 
 class Program
 {
