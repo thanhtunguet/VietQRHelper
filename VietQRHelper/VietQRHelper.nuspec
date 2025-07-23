@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>VietQR</id>
     <version>1.0.2</version>
-    <title>$title$</title>
+    <title>VietQR</title>
     <readme>README.md</readme>
-    <authors>$author$</authors>
+    <authors>thanhtunguet</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <!-- <icon>icon.png</icon> -->
-    <projectUrl>https://github.com/thanhtunguet/VietQRHelper</projectUrl>
+    <projectUrl>https://github.com/thanhtunguet/VietQR</projectUrl>
     <icon>logo.png</icon>
-    <description>$description$</description>
+    <description>Thư viện tạo mã VietQR cho C# từ 6.0. Dựa trên các dự án nguồn mở xuất sắc, xin gửi lời cảm ơn tới xuannghia/vietnam-qr-pay và nick-hoang/vietnam-qr-pay-csharp.</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
-    <copyright>$copyright$</copyright>
+    <copyright>thanhtunguet</copyright>
     <tags>VietQR VietQR_pay Bank VietQR_API QRCode_Pay</tags>
   </metadata>
   <files>

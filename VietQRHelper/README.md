@@ -1,8 +1,15 @@
-# VietQRHelper - Thư viện tạo & giải mã QR thanh toán Việt Nam (C#/.NET 6+)
+# VietQR - Thư viện tạo & giải mã QR thanh toán Việt Nam (C#/.NET 6+)
 
-**Fork từ:**
+**Tác giả:** thanhtunguet
+
+**Mô tả:**
+
+Thư viện tạo mã VietQR cho C# từ 6.0. Là bản fork dựa trên các thư viện mã nguồn có sẵn cho Winform và .NET 3.5:
+
 - [xuannghia/vietnam-qr-pay](https://github.com/xuannghia/vietnam-qr-pay)
 - [nick-hoang/vietnam-qr-pay-csharp](https://github.com/nick-hoang/vietnam-qr-pay-csharp)
+
+Xin gửi lời cảm ơn tới các tác giả.
 
 ---
 
@@ -41,7 +48,7 @@ using VietQRHelper;
 // Khởi tạo QR chuyển khoản Vietcombank
 var qrPay = QRPay.InitVietQR(
     bankBin: BankApp.BanksObject[BankKey.VIETCOMBANK].bin,
-    bankNumber: "0721000584901",
+    bankNumber: "0491000147829",
     amount: "20000",
     purpose: "Ủng hộ VietQRHelper"
 );
@@ -177,4 +184,4 @@ Console.WriteLine(qrPay.additionalData.purpose); // Chuyen tien
 
 ---
 
-**Mọi thắc mắc, góp ý, vui lòng tạo issue hoặc liên hệ qua GitHub!**
+**Mọi thắc mắc, góp ý, vui lòng tạo issue hoặc liên hệ qua GitHub của [thanhtunguet](https://github.com/thanhtunguet/csharp-vietqr)!**

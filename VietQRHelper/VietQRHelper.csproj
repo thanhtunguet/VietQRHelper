@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <RootNamespace>VietQRHelper</RootNamespace>
-    <AssemblyName>VietQRHelper</AssemblyName>
+    <RootNamespace>VietQR</RootNamespace>
+    <AssemblyName>VietQR</AssemblyName>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace VietQRHelper
+namespace VietQR
 {
     #region bank-code.ts
     public static class BankCode

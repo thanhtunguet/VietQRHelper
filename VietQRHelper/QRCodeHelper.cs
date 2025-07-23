@@ -4,7 +4,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
-namespace VietQRHelper
+namespace VietQR
 {
     public class QRCodeHelper
     {

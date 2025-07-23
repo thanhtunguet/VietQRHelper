@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace VietQRHelper
+namespace VietQR
 {
     public class QRPay
     {
