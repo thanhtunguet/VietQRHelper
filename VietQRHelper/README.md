@@ -6,8 +6,9 @@ Thư viện C# được fork từ [https://github.com/nick-hoang/vietnam-qr-pay-
 
 ## Encode - Tạo mã QR
 
-### VietQR Tĩnh
+### VietQR Tĩnh (Cross-platform, .NET 6+)
 ```csharp
+using VietQRHelper;
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using VietQRHelper;
 
 namespace TestQRPay
 {
@@ -39,8 +39,11 @@ namespace TestQRPay
                 );
             var content = qrPay.Build();
 
-            var imageQR = QRCodeHelper.TaoVietQRCodeImage(content );
-            pictureBox1.Image = imageQR;    
+            // Get PNG byte array (cross-platform, suitable for web)
+            var pngBytes = QRCodeHelper.TaoVietQRCodePng(content);
+
+            // Example: return as a file in ASP.NET Core Web API
+            // return File(pngBytes, "image/png");
         }
     }
 }
@@ -51,9 +54,9 @@ namespace TestQRPay
 ### VietQR Động
 
 ```csharp
-using vietnam_qr_pay_csharp;
+using VietQRHelper;
 
-var qrPay = QRPay.initVietQR(
+var qrPay = QRPay.InitVietQR(
   bankBin: BankApp.BanksObject[BankKey.ACB].bin,
   bankNumber: "257678859", // Số tài khoản
   amount: "10000", // Số tiền
@@ -61,8 +64,8 @@ var qrPay = QRPay.initVietQR(
 );
 var content = qrPay.Build();
 
-Console.Writeline(content)
-// 00020101021238530010A0000007270123000697041601092576788590208QRIBFTTA53037045405100005802VN62150811Chuyen tien630453E6
+var pngBytes = QRCodeHelper.TaoVietQRCodePng(content);
+// Use pngBytes as needed (e.g., return from web API, save to file, etc.)
 
 ```
 
@@ -77,12 +80,12 @@ Bạn có thể lấy STK này tại trang chi tiết của QR Nhận tiền tro
 #### MoMo
 
 ```csharp
-using vietnam_qr_pay_csharp;
+using VietQRHelper;
 
 // Số tài khoản trong ví MoMo
 var accountNumber = "99MM24011M34875080";
 
-var momoQR = QRPay.initVietQR(
+var momoQR = QRPay.InitVietQR(
   bankBin: BankApp.BanksObject[BankKey.BANVIET].bin,
   bankNumber: accountNumber,
   // amount: "10000", // Số tiền (không bắt buộc)
@@ -108,12 +111,12 @@ const content = momoQR.Build()
 > Trong mã QR của ZaloPay có chứa một số thông tin bổ sung ở trường ID 26. Tuy nhiên chưa rõ chức năng của các thông tin này (có thể là dùng để định danh từng mã QR đc tạo trên hệ thống của ZaloPay). Trong ví dụ dưới sẽ bỏ qua các thông tin này.
 
 ```csharp
-using vietnam_qr_pay_csharp;
+using VietQRHelper;
 
 // Số tài khoản trong ví ZaloPay
 var accountNumber = "99ZP24009M07248267";
   
-const zaloPayQR = QRPay.initVietQR(
+const zaloPayQR = QRPay.InitVietQR(
   bankBin: BankApp.BanksObject[BankKey.BANVIET].bin,
   bankNumber: accountNumber,
   // amount: '10000', // Số tiền (không bắt buộc)
@@ -130,7 +133,9 @@ var content = zaloPayQR.Build()
 ### VNPay 
 
 ```csharp
-var qrPay = QRPay.initVNPayQR(
+using VietQRHelper;
+
+var qrPay = QRPay.InitVNPayQR(
   merchantId: "0102154778",
   merchantName: "TUGIACOMPANY",
   store: "TU GIA COMPUTER",
@@ -147,7 +152,7 @@ Console.Writeline(content)
 
 ### VietQR
 ```javascript
-using vietnam_qr_pay_csharp;
+using VietQRHelper;
 
 const qrContent = '00020101021238530010A0000007270123000697041601092576788590208QRIBFTTA5303704540410005802VN62150811Chuyen tien6304BBB8'
 const qrPay = new QRPay(qrContent);
@@ -162,7 +167,7 @@ Console.Writeline(qrPay.additionalData.purpose) // Chuyen tien
 
 ### VNPay
 ```csharp
-using vietnam_qr_pay_csharp;
+using VietQRHelper;
 
 const qrContent = "00020101021126280010A0000007750110010531314453037045408210900005802VN5910CELLPHONES62600312CPSHN ONLINE0517021908061613127850705ONLHN0810CellphoneS63047685"
 const qrPay = new QRPay(qrContent);
@@ -182,65 +187,65 @@ Console.Writeline(qrPay.additionalData.reference) // 02190806161312785
 
 
 ```csharp
-using vietnam_qr_pay_csharp;
+using VietQRHelper;
 ```
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `isValid` | `boolean` | Kiểm tra tính hợp lệ của mã QR |
-| `initMethod` | `string` | Phương thức khởi tạo (`11` - QR Tĩnh, `12` - QR động) |
-| `provider` | `Provider` | Thông tin nhà cung cấp |
-| `merchant` | `Merchant` | Thông tin merchant |
-| `consumer` | `Consumer` | Thông tin người thanh toán |
-| `amount` | `string` | Số tiền giao dịch |
-| `currency` | `string` | Mã tiền tệ (VNĐ: 704) |
-| `nation` | `string` | Mã quốc gia |
-| `additionalData` | `AdditionalData` | Thông tin bổ sung |
-| `crc` | `string` | Mã kiểm tra |
-| `build()` | `method` | Tạo lại mã QR mới |
+| Name             | Type             | Description                                           |
+|------------------|------------------|-------------------------------------------------------|
+| `isValid`        | `boolean`        | Kiểm tra tính hợp lệ của mã QR                        |
+| `initMethod`     | `string`         | Phương thức khởi tạo (`11` - QR Tĩnh, `12` - QR động) |
+| `provider`       | `Provider`       | Thông tin nhà cung cấp                                |
+| `merchant`       | `Merchant`       | Thông tin merchant                                    |
+| `consumer`       | `Consumer`       | Thông tin người thanh toán                            |
+| `amount`         | `string`         | Số tiền giao dịch                                     |
+| `currency`       | `string`         | Mã tiền tệ (VNĐ: 704)                                 |
+| `nation`         | `string`         | Mã quốc gia                                           |
+| `additionalData` | `AdditionalData` | Thông tin bổ sung                                     |
+| `crc`            | `string`         | Mã kiểm tra                                           |
+| `build()`        | `method`         | Tạo lại mã QR mới                                     |
 
 ### `Provider` class
 
 Thông tin đơn vị cung cấp mã QR (VietQR, VNPay)
 
 
-| Name | Type | Description |
-| --- | --- | --- |
+| Name   | Type     | Description           |
+|--------|----------|-----------------------|
 | `guid` | `string` | Mã định danh toàn cầu |
-| `name` | `string` | Tên nhà cung cấp |
+| `name` | `string` | Tên nhà cung cấp      |
 
 ### `Merchant` class
 
 Thông tin merchant (Đơn vị chấp nhận thanh toán)
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Mã định danh đơn vị CNTT |
-| `name` | `string` | Tên đơn vị CNTT |
+| Name   | Type     | Description              |
+|--------|----------|--------------------------|
+| `id`   | `string` | Mã định danh đơn vị CNTT |
+| `name` | `string` | Tên đơn vị CNTT          |
 
 ### `Consumer` class
 
 Thông tin người thanh toán
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `bankBin` | `string` | Mã ngân hàng |
+| Name         | Type     | Description  |
+|--------------|----------|--------------|
+| `bankBin`    | `string` | Mã ngân hàng |
 | `bankNumber` | `string` | Số tài khoản |
 
 ### `AdditionalData` class
 
 Thông tin bổ sung
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `billNumber` | `string` | Số hóa đơn |
-| `mobileNumber` | `string` | Số điện thoại di động |
-| `store` | `string` | Tên cửa hàng |
+| Name            | Type     | Description              |
+|-----------------|----------|--------------------------|
+| `billNumber`    | `string` | Số hóa đơn               |
+| `mobileNumber`  | `string` | Số điện thoại di động    |
+| `store`         | `string` | Tên cửa hàng             |
 | `loyaltyNumber` | `string` | Mã khách hàng thân thiết |
-| `reference` | `string` | Mã Tham chiếu |
-| `customerLabel` | `string` | Mã khách hàng |
-| `terminal` | `string` | Tên điểm bản |
-| `purpose` | `string` | Nội dung giao dịch |
+| `reference`     | `string` | Mã Tham chiếu            |
+| `customerLabel` | `string` | Mã khách hàng            |
+| `terminal`      | `string` | Tên điểm bản             |
+| `purpose`       | `string` | Nội dung giao dịch       |
 
 ###  `Build()` method
 

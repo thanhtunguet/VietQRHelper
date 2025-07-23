@@ -1,0 +1,6 @@
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VietQRHelper", "VietQRHelper\VietQRHelper.csproj", "{E539AAF1-1E19-4DC8-AABC-1851E99D4D5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestQRPay", "TestQRPay\TestQRPay.csproj", "{130F6D74-F9CE-496D-9CE0-FD473AFC6D9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VietQRConsoleTest", "VietQRConsoleTest\VietQRConsoleTest.csproj", "{B1A1A1A1-1111-1111-1111-111111111111}"
+EndProject 

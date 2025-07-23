@@ -1,24 +1,17 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Controls;
-using System.Windows.Media;
-using QRCoder;
+﻿using QRCoder;
+using System.IO;
 
 namespace VietQRHelper
 {
     public class QRCodeHelper
     {
-        public static System.Drawing.Image TaoVietQRCodeImage(string input)
+        public static byte[] TaoVietQRCodePng(string input)
         {
             using (var qrGenerator = new QRCodeGenerator())
+            using (var qrCodeData = qrGenerator.CreateQrCode(input, QRCodeGenerator.ECCLevel.Q))
             {
-                
-                var qrCodeData = qrGenerator.CreateQrCode(input, QRCodeGenerator.ECCLevel.Q);
-                using (var qrCode = new QRCode(qrCodeData))
-                {                   
-                    Bitmap qrCodeImage = qrCode.GetGraphic(20, System.Drawing.Color.Black, System.Drawing.Color.White, true);
-                    return qrCodeImage;
-                }
+                var qrCode = new BitmapByteQRCode(qrCodeData);
+                return qrCode.GetGraphic(20);
             }
         }
     }
